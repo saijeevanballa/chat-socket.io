@@ -1,13 +1,9 @@
-import * as Express from "express";
+import * as express from "express";
 
-const app = Express()
+const app = express()
 
 require("./start-up/db")();
 require("./start-up/bodyParser")(app)
-
-
-app.get("/", (req, res) => {
-    res.status(200).send("hello world");
-})
+require("./start-up/routes")(app, express)
 
 export = app;
