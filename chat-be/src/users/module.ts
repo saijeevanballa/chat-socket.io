@@ -4,7 +4,6 @@ import { userSchema } from "./model";
 import { hashPassword, comparePassword } from "../utils/modules/bcrypt";
 import { jwt_create } from "../utils/modules/jwt";
 
-//  GE DETAILS
 export async function userRegister(objBody) {
     try {
         const { error: bodyValidationError } = userRegistrationValidator.validate(objBody);

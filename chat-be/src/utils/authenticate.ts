@@ -17,3 +17,16 @@ export default async function authenticate(req: any, res: any, next: any) {
         return next(new APIError('Unauthorized', 401));
     };
 };
+
+// USER AUTHENTICATION 
+export async function authenticateWithToken(authorization) {
+    try {
+        let token: any = await jwt_Verify(authorization.substring(7))
+        if (!token) throw new APIError("Invalid Token", 400);
+        const user: any = await userSchema.findOne({ _id: token.user }).exec();
+        if (!user) throw new APIError("Invalid Action", 400);
+        return user;
+    } catch (err) {
+        throw err
+    };
+};
